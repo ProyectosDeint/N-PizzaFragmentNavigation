@@ -1,4 +1,4 @@
-# PizzaFragment
+# PizzaFragmentNavigation
 
 Este proyecto es una copia del proyecto PizzaFragment, pero la gestión de sus fragments están gestionados por el componente Navigation.
 
