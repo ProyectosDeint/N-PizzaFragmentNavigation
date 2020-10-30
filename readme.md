@@ -1,58 +1,34 @@
 # PizzaFragment
 
+Este proyecto es una copia del proyecto PizzaFragment, pero la gestión de sus fragments están gestionados por el componente Navigation.
+
 ### Contenido Vistos:
 
-##### Date: 26/10/2020
+##### Date: 30/10/2020
 
-- Creamos la interfaz del Activity principal que contendrá los Fragments, en este caso el ContentView -> FrameLayout.
+1. Componente Navigation.
 
-- Creación de los Fragments (ListPizzaFragment / ViewPizzaFragment).
+2. Añadir dependencias en el build.gradle(app) para el componente Navigation.
 
-- Creación del modelo Pizza, que contiene los datos de una Pizza.
+3. Creación del fichero de recurso, que va a ser de navegación -> nav_graph.
 
-- Creación de una clase repositorio que gestione las pizzas, implmentamos el método getList() que obtendrá una lista de todas las pizzas creadas.
+   Este recurso es de tipo Navigation.
 
-- Utilizar fuentes de textos de terceros en nuestro proyecto.
+4. Diseño del nav_graph con los fragments list_fragment_pizza y view_fragment_pizza.  list_fragment_pizza la ponemos como fragment de inicio.
 
-  (
+5. Añadir una ruta desde  list_fragment_pizza a view_fragment_pizza.
 
-  ```
-  New> AndroidResourceDirectory> name:font,Resourcetype:value > introducir_archivo_en_minus.tff 
-  ```
+   Unimos en diseño list_fragment_pizza con view_fragment_pizza y automáticamente le añade la ruta.
 
-  )
+6. En elfragment ViewPizza añadimos un argumento ->
 
-- Creación del layout `fragment_list_pizza`.
+7. En el layout activity_main añadimos un fragment estático (`androidx.navigation.fragment.NavHostFragment`).
 
-- Enlazar fragment a la Activity.
+8. Añadir en ese fragment el `navGraph`que hemos creado antes.
 
-  - Declaración de los fragments como campos en la Activity.
+9. Podemos pasar el objeto pizza  en `onItemClick` de dos maneras:
 
-  - En el método `onCreate()`:
-
-    - Creamos un FragmentManager(clase que gestiona los fragments y sus transacciones).
-
-      ```java
-      FragmentManager fm= getSupportFragmetManager();
-      ```
-
-    - Creamos una transacción con la clase FragmentTransaction.
-
-      ```java
-      FragmentTransaction ft= fm.beginTransaction();
-      ```
-
-    - Inicializamos el fragment a insertar, y lo añadimos a la transaccion con el método add().
-
-    - Terminamos la transaccion con el método commit() de la clase FragmentTransaction.
-
-##### Date: 27/10/2020
-
-
-
-##### Date: 28/10/2020
-
-- Explicacion de la Pila de las Actividades, donde se guardan los fragments creados dentro de ella.
-
-- Guardar el estado de un Fragment con el método `setRetainInstance(true)` creando un número aleatorio con la clase Random.
-- Guardar el estado de una Activity creando un número aleatorio con la clase Random e implementando el método `onSaveInstanceState()`.
+   1. La mejor es esta opción y es la que vamos a utilizar, porque comprueba los datos que se le pasan (`safe-args`):
+      * Añadir en el gradle las dependecias correspondientes.
+      * Pasar la action en ListPizzaFragment a ViewPizzaFragment en `onItemClick()`.
+      * Recoger la action en ViewPizzaFragment.
