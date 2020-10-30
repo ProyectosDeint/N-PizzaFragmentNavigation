@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/listPizzaFragment">
+
+    <fragment
+        android:id="@+id/listPizzaFragment"
+        android:name="com.example.pizzafragment.ListPizzaFragment"
+        android:label="fragment_list_pizza"
+        tools:layout="@layout/fragment_list_pizza" >
+        <action
+            android:id="@+id/action_listPizzaFragment_to_viewPizzaFragment"
+            app:destination="@id/viewPizzaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewPizzaFragment"
+        android:name="com.example.pizzafragment.ViewPizzaFragment"
+        android:label="fragment_view_pizza"
+        tools:layout="@layout/fragment_view_pizza" >
+        <argument
+            android:name="pizza"
+            app:argType="com.example.pizzafragment.model.Pizza" />
+    </fragment>
+</navigation>
